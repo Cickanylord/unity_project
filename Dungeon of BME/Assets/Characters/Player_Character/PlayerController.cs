@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     bool canMove=true;
 
+    //attack
+    public SwordAttack swordAttack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +94,22 @@ public class PlayerController : MonoBehaviour
 
      void OnFire(){
         animator.SetTrigger("swordAttack");
+    }
+
+    public void SwordAttack(){
+        LockMovement();
+        if(spriteRenderer.flipX==true){
+            swordAttack.AttackLeft();
+        }
+        else{
+            swordAttack.AttackRight();
+        }
+    }
+
+    public void EndSwordAttck(){
+        UNLockMovement();
+        swordAttack.AttackStop();
+
     }
 
     public void LockMovement(){
